@@ -13,7 +13,7 @@ git clone https://github.com/nripankadas07/join-fanout-lab.git
 cd join-fanout-lab
 python -m venv .venv
 . .venv/bin/activate
-python -m pip install --upgrade "pip>=26.2"
+python -m pip install --upgrade "pip>=26.2" "setuptools>=84.1"
 python -m pip install .
 join-fanout-lab example.json --html report.html
 ```
