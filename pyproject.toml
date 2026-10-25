@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=78.1.1"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "join-fanout-lab"
+version = "0.1.0"
+description = "Polars join row-growth diagnostics"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["polars==2.0.0"]
+[project.scripts]
+join-fanout-lab = "join_fanout_lab:main"
+[tool.setuptools]
+py-modules = ["join_fanout_lab"]

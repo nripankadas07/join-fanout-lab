@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Where the extra join rows come from</title><style>body{font:16px/1.6 system-ui;background:#f3f6fa;color:#182438;max-width:1100px;margin:40px auto;padding:0 24px}header{border-bottom:3px solid #137a68;padding-bottom:24px}h1{font-size:2.25rem;line-height:1.15;max-width:800px}h2{margin-top:40px;font-size:1.2rem}.cards{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0}.card{background:white;padding:16px 22px;border:1px solid #d2dae5;border-radius:10px;min-width:140px}.card b{display:block;font-size:1.7rem;color:#0b6555}table{border-collapse:collapse;width:100%;background:white;margin-bottom:22px;display:block;overflow:auto}th,td{text-align:left;padding:12px;border-bottom:1px solid #d6deea;vertical-align:top}th{background:#e3eaf2}td{overflow-wrap:anywhere}input{font:inherit;padding:10px;width:min(90%,600px);border:1px solid #8593a6;border-radius:6px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:20px;border:1px solid #d2dae5}.status{font-weight:700;color:#0b6555}footer{margin-top:40px;color:#4a5b73}details{margin-top:30px}label{display:block}</style><header><p>LOCAL DIAGNOSTICS · SYNTHETIC EXAMPLE WHEN USING THE BUNDLED FIXTURE</p><h1>Where the extra join rows come from</h1><p>Polars equi-join rehearsal. Group counts explain row growth before an expanded join is materialized.</p><p class="status">Over row budget</p></header><div class="cards"><div class="card">Left rows<b>4</b></div><div class="card">Right rows<b>5</b></div><div class="card">Output rows<b>8</b></div><div class="card">Row budget<b>6</b></div></div><label>Filter evidence rows <input id="q" type="search" placeholder="Service, key, group, path or finding"></label><h2>Keys contributing the most rows</h2><table><thead><tr><th>Key</th><th>Left</th><th>Right</th><th>Matched pairs</th><th>Output</th></tr></thead><tbody><tr><td>[&quot;P17&quot;, &quot;A&quot;]</td><td>2</td><td>3</td><td>6</td><td>6</td></tr><tr><td>[&quot;Q2&quot;, &quot;B&quot;]</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>[null, &quot;B&quot;]</td><td>1</td><td>1</td><td>0</td><td>1</td></tr><tr><td>[&quot;R9&quot;, &quot;C&quot;]</td><td>0</td><td>1</td><td>0</td><td>0</td></tr></tbody></table><details><summary>Complete JSON evidence</summary><pre>{
+  &quot;schema&quot;: &quot;join-fanout/v1&quot;,
+  &quot;polars_version&quot;: &quot;2.0.0&quot;,
+  &quot;how&quot;: &quot;left&quot;,
+  &quot;nulls_equal&quot;: false,
+  &quot;left_rows&quot;: 4,
+  &quot;right_rows&quot;: 5,
+  &quot;output_rows&quot;: 8,
+  &quot;max_rows&quot;: 6,
+  &quot;over_budget&quot;: true,
+  &quot;null_key_rows&quot;: {
+    &quot;left&quot;: 1,
+    &quot;right&quot;: 1
+  },
+  &quot;matching_key_cardinality&quot;: &quot;m:m&quot;,
+  &quot;many_to_many_keys&quot;: 1,
+  &quot;key_count&quot;: 4,
+  &quot;top_keys&quot;: [
+    {
+      &quot;key&quot;: [
+        &quot;P17&quot;,
+        &quot;A&quot;
+      ],
+      &quot;left_rows&quot;: 2,
+      &quot;right_rows&quot;: 3,
+      &quot;matched_pairs&quot;: 6,
+      &quot;output_rows&quot;: 6,
+      &quot;many_to_many&quot;: true
+    },
+    {
+      &quot;key&quot;: [
+        &quot;Q2&quot;,
+        &quot;B&quot;
+      ],
+      &quot;left_rows&quot;: 1,
+      &quot;right_rows&quot;: 0,
+      &quot;matched_pairs&quot;: 0,
+      &quot;output_rows&quot;: 1,
+      &quot;many_to_many&quot;: false
+    },
+    {
+      &quot;key&quot;: [
+        null,
+        &quot;B&quot;
+      ],
+      &quot;left_rows&quot;: 1,
+      &quot;right_rows&quot;: 1,
+      &quot;matched_pairs&quot;: 0,
+      &quot;output_rows&quot;: 1,
+      &quot;many_to_many&quot;: false
+    },
+    {
+      &quot;key&quot;: [
+        &quot;R9&quot;,
+        &quot;C&quot;
+      ],
+      &quot;left_rows&quot;: 0,
+      &quot;right_rows&quot;: 1,
+      &quot;matched_pairs&quot;: 0,
+      &quot;output_rows&quot;: 0,
+      &quot;many_to_many&quot;: false
+    }
+  ]
+}</pre></details><footer>Read the repository limitations before acting. These results describe supplied inputs; they do not certify a live system.</footer><script>document.querySelector("#q").addEventListener("input",e=>{const q=e.target.value.toLowerCase();document.querySelectorAll("tbody tr").forEach(r=>r.hidden=!r.textContent.toLowerCase().includes(q))});</script></html>

@@ -1,0 +1,38 @@
+{
+  "title": "Join Fanout Lab",
+  "user": "Data engineers joining stock, order or event tables in Polars",
+  "problem": "A duplicated business key can multiply a join result. A row-count surprise is easier to investigate before the expanded table exists.",
+  "capability": "Compute exact equi-join output counts from grouped keys, show the largest contributors and flag a chosen row budget.",
+  "anchor": "pola-rs/polars",
+  "pin": "Polars 2.0.0, installed from the official Python package registry",
+  "alternatives": [
+    "pandas-dev/pandas",
+    "pola-rs/polars",
+    "unionai-oss/pandera"
+  ],
+  "query": "topic:dataframe stars:>10000 archived:false sort:stars; polars join audit sort:stars",
+  "evidence": [
+    "https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.join.html",
+    "https://github.com/pola-rs/polars/issues/20947"
+  ],
+  "demand": "Inferred demand for this report. The current Polars documentation already supports join validation and explicit null matching. The streaming tracking issue supplies engine context, not a request for this tool and not proof of a current join bug.",
+  "addition": "Polars executes joins; pandas also provides merge validation; Pandera validates data contracts. This tool adds a bounded preflight row budget and per-key contribution evidence without materializing the multiplied result. No claim that those projects cannot produce similar diagnostics with additional code.",
+  "outcome": "The invented stock example predicts 8 left-join rows from 4 left rows and 5 right rows. Key [P17, A] contributes 6 rows, exceeding the configured total budget of 6.",
+  "acceptance": [
+    "All six supported join modes agree with actual Polars joins across 144 seeded composite-key/null cases.",
+    "A 400-by-500 duplicated key reports 200000 output rows without creating the expanded join.",
+    "Mixed key types, missing keys, duplicate JSON keys and nonfinite numbers reject."
+  ],
+  "fields": "`left` and `right` are arrays of row objects. `keys` names 1..8 common columns. `how` is inner/left/right/full/semi/anti; default inner. `nulls_equal` defaults false. `max_rows` defaults 100000. Non-key values are ignored.",
+  "limits": "Up to 100000 rows per side and 4 MiB JSON. Key values are text, integers, booleans or null, with one non-null type per column across both sides. No floats, expressions, coercion, as-of/inequality/cross joins, lazy scans or memory/latency estimates. Counts use full inputs, not sampling. The report includes at most 30 key groups and can expose business identifiers.",
+  "distinction": "Existing table-reconcile compares keyed CSV versions with decimal tolerances; sql-null-witness explains predicates. Neither is being republished here. This tool examines join multiplicity and validates its counts against Polars itself.",
+  "maintenance": "One pinned Polars dependency plus its platform runtime wheel. Recheck null semantics and the join oracle before upgrading. It is not a general data-quality platform.",
+  "discovery": "Searchable Polars many-to-many join and null-matching examples, a row-growth HTML report and an entry in the portfolio index.",
+  "rank": 1,
+  "identity": "join-fanout-lab",
+  "date": "2026-10-25",
+  "state": "VALIDATED",
+  "demand_status": "Inferred demand for this specific project; linked upstream evidence is qualified below.",
+  "no_performance_claim": true,
+  "no_upstream_affiliation": true
+}

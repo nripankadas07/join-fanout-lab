@@ -1,0 +1,64 @@
+{
+  "how": "left",
+  "key_count": 4,
+  "left_rows": 4,
+  "many_to_many_keys": 1,
+  "matching_key_cardinality": "m:m",
+  "max_rows": 6,
+  "null_key_rows": {
+    "left": 1,
+    "right": 1
+  },
+  "nulls_equal": false,
+  "output_rows": 8,
+  "over_budget": true,
+  "polars_version": "2.0.0",
+  "right_rows": 5,
+  "schema": "join-fanout/v1",
+  "top_keys": [
+    {
+      "key": [
+        "P17",
+        "A"
+      ],
+      "left_rows": 2,
+      "many_to_many": true,
+      "matched_pairs": 6,
+      "output_rows": 6,
+      "right_rows": 3
+    },
+    {
+      "key": [
+        "Q2",
+        "B"
+      ],
+      "left_rows": 1,
+      "many_to_many": false,
+      "matched_pairs": 0,
+      "output_rows": 1,
+      "right_rows": 0
+    },
+    {
+      "key": [
+        null,
+        "B"
+      ],
+      "left_rows": 1,
+      "many_to_many": false,
+      "matched_pairs": 0,
+      "output_rows": 1,
+      "right_rows": 1
+    },
+    {
+      "key": [
+        "R9",
+        "C"
+      ],
+      "left_rows": 0,
+      "many_to_many": false,
+      "matched_pairs": 0,
+      "output_rows": 0,
+      "right_rows": 1
+    }
+  ]
+}

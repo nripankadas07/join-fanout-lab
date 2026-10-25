@@ -1,0 +1,49 @@
+{
+  "left": [
+    {
+      "sku": "P17",
+      "zone": "A"
+    },
+    {
+      "sku": "P17",
+      "zone": "A"
+    },
+    {
+      "sku": "Q2",
+      "zone": "B"
+    },
+    {
+      "sku": null,
+      "zone": "B"
+    }
+  ],
+  "right": [
+    {
+      "sku": "P17",
+      "zone": "A"
+    },
+    {
+      "sku": "P17",
+      "zone": "A"
+    },
+    {
+      "sku": "P17",
+      "zone": "A"
+    },
+    {
+      "sku": "R9",
+      "zone": "C"
+    },
+    {
+      "sku": null,
+      "zone": "B"
+    }
+  ],
+  "keys": [
+    "sku",
+    "zone"
+  ],
+  "how": "left",
+  "nulls_equal": false,
+  "max_rows": 6
+}
